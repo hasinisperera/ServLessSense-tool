@@ -1,7 +1,0 @@
-.heatmap-container {
-  width: 100%; /* Full width */
-  max-height: 400px; /* Limit the height to enable vertical scrolling */
-  overflow-y: auto; /* Add vertical scroll */
-  overflow-x: hidden; /* Prevent horizontal scroll */
-  padding: 10px; /* Optional padding */
-}

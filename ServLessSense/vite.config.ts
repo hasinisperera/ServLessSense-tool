@@ -13,7 +13,7 @@ export default defineConfig({
     checker({
       typescript: true,
       eslint: {
-        lintCommand: 'DISABLE_ESLINT_PLUGIN=true',
+        lintCommand: 'eslint "./src/**/*.{js,jsx,ts,tsx}"',
         dev: { logLevel: ['error'] },
       },
       overlay: {

@@ -1,0 +1,7 @@
+[
+  {
+    "filePath": "E:\\Uni_work\\Approach_2\\wonderless\\impl\\projects\\70-10_serverless-boilerplate\\src\\repositories\\users.js",
+    "line": 1,
+    "message": "File has too many functions (8). Consider splitting into smaller modules."
+  }
+]
