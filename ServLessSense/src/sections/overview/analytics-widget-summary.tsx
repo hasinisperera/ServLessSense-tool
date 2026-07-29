@@ -1,22 +1,12 @@
-import type { CardProps } from '@mui/material/Card';
-import Tooltip from '@mui/material/Tooltip';
-import IconButton from '@mui/material/IconButton';
-import { useState } from 'react';
-
-import type { ColorType } from 'src/theme/core/palette';
-import type { ChartOptions } from 'src/components/chart';
-
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import { useTheme } from '@mui/material/styles';
+import { useState } from 'react';
 
-import { fNumber, fPercent, fShortenNumber } from 'src/utils/format-number';
+import type { CardProps } from '@mui/material/Card';
+import type { ColorType } from 'src/theme/core/palette';
 
 import { varAlpha, bgGradient } from 'src/theme/styles';
-
-import { Iconify } from 'src/components/iconify';
-import { SvgColor } from 'src/components/svg-color';
-import { Chart, useChart } from 'src/components/chart';
 
 // ----------------------------------------------------------------------
 
@@ -39,22 +29,6 @@ export function AnalyticsWidgetSummary({
 }: Props) {
   const theme = useTheme();
   const [isHovered, setIsHovered] = useState(false);
-
-  const chartColors = [theme.palette[color].dark];
-
-  const renderTrending = (
-    <Box
-      sx={{
-        top: 16,
-        gap: 0.5,
-        right: 16,
-        display: 'flex',
-        position: 'absolute',
-        alignItems: 'center',
-      }}
-    >
-    </Box>
-  );
 
   return (
     <Card

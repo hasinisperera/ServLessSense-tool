@@ -190,7 +190,7 @@ export function useChart(options?: ChartOptions): ChartOptions {
      * Tooltip
      *************************************** */
     tooltip: {
-      theme: 'false',
+      theme: 'light',
       fillSeriesColor: false,
       x: {
         show: true,

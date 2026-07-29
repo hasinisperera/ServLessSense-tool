@@ -1,0 +1,7 @@
+[
+  {
+    "filePath": "E:\\Uni_work\\Approach_2\\wonderless\\impl\\projects\\70-10_serverless-boilerplate\\serverless.yml",
+    "line": 10,
+    "message": "Too many technologies configured: DynamoDB, S3, SNS, SQS"
+  }
+]

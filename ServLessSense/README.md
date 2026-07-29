@@ -1,17 +1,68 @@
+# ServLessSense
 
-**Install:** 
-``npm install`
+Dashboard for detecting and visualizing serverless code smells.
 
-**Run Analysis:** 
+## Install
 
-```
-  cd .\src\scripts\
-  node run-eslint.cjs <path-to-project>
-  node asyncCalls.cjs <path-to-project>
+```bash
+yarn install
 ```
 
-**Link ESLint plugin:**
-``npm link eslint-plugin-serverless-smells``
+## Run Analysis
 
-**Run Application( in the project root):**
-``npm run app``
+Analyze a target serverless project and write results to `public/data/`:
+
+```bash
+yarn analyze <path-to-project>
+```
+
+This runs ESLint smell rules and async/sync call analysis in one step.
+
+## Run Application
+
+```bash
+yarn dev
+```
+
+Open [http://localhost:3039](http://localhost:3039).
+
+## Build for Production
+
+```bash
+yarn build
+yarn preview
+```
+
+Static smell data in `public/data/` is included in the build output.
+
+## GPT Refactoring (optional)
+
+Start the refactoring API server:
+
+```bash
+yarn dev:api
+```
+
+Or run frontend and API together:
+
+```bash
+yarn dev:all
+```
+
+Configure the API URL via `.env`:
+
+```
+VITE_API_URL=http://localhost:3001
+```
+
+## Lint
+
+```bash
+yarn lint
+```
+
+## Project Structure
+
+- `src/sections/smells/` — shared smell visualization module
+- `public/data/smells/` — analysis output JSON (dev + production)
+- `tools/analyze/` — ESLint and async call analyzers

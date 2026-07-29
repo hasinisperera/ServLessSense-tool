@@ -9,9 +9,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "glob": "^11.0.2"
+  },
   "devDependencies": {
-    "eslint": "^9.16.0",
-    "glob": "^11.0.2",
     "jest": "^29.7.0"
   }
 }

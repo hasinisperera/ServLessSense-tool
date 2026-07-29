@@ -1,0 +1,12 @@
+[
+  {
+    "filePath": "E:\\Uni_work\\Approach_2\\wonderless\\impl\\projects\\70-10_serverless-boilerplate\\src\\repositories\\users.js",
+    "line": 13,
+    "message": "Shared code block detected between functions findById and findAll"
+  },
+  {
+    "filePath": "E:\\Uni_work\\Approach_2\\wonderless\\impl\\projects\\70-10_serverless-boilerplate\\src\\routes\\users.js",
+    "line": 5,
+    "message": "Shared code block detected in route handlers"
+  }
+]

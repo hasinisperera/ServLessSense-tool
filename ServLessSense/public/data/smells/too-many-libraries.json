@@ -1,0 +1,7 @@
+[
+  {
+    "filePath": "E:\\Uni_work\\Approach_2\\wonderless\\impl\\projects\\70-10_serverless-boilerplate\\src\\routes\\users.js",
+    "line": 1,
+    "message": "Unused import 'lodash' detected"
+  }
+]

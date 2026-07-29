@@ -12,7 +12,7 @@ import { DashboardLayout } from 'src/layouts/dashboard';
 export const HomePage = lazy(() => import('src/pages/home'));
 export const AsyncCallsPage = lazy(() => import('src/pages/async-calls'));
 export const SharedCodePage = lazy(() => import('src/pages/shared-code'));
-export const ToomanyFunctionsPage = lazy(() => import('src/pages/too-many-functions'));
+export const TooManyFunctionsPage = lazy(() => import('src/pages/too-many-functions'));
 export const TooManyLibrariesPage = lazy(() => import('src/pages/too-many-libraries'));
 export const TooManyTechPage = lazy(() => import('src/pages/too-many-tech'));
 export const Page404 = lazy(() => import('src/pages/page-not-found'));
@@ -46,7 +46,7 @@ export function Router() {
         { element: <HomePage />, index: true },
         { path: 'async-calls', element: <AsyncCallsPage /> },
         { path: 'shared-code', element: <SharedCodePage /> },
-        { path: 'too-many-functions', element: <ToomanyFunctionsPage /> },
+        { path: 'too-many-functions', element: <TooManyFunctionsPage /> },
         { path: 'too-many-libraries', element: <TooManyLibrariesPage /> },
         { path: 'too-many-tech', element: <TooManyTechPage /> },
       ],

@@ -105,9 +105,9 @@ module.exports = {
         'internal-pattern': ['src/**'],
       },
     ],
-    "serverless-smells/too-many-functions": "warn",
-    "serverless-smells/too-many-technologies": "warn",
-    "serverless-smells/shared-code-blocks": "warn",
-    "serverless-smells/too-many-libraries": "warn",
+    "serverless-smells/too-many-functions": "off",
+    "serverless-smells/too-many-technologies": "off",
+    "serverless-smells/shared-code-blocks": "off",
+    "serverless-smells/too-many-libraries": "off",
   },
 };
