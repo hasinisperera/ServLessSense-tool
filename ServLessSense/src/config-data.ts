@@ -11,6 +11,14 @@ export const DATA_PATHS = {
 
 export const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:3001';
 
-export const GPT_MODELS = ['gpt-3.5', 'gpt-4', 'gpt-4o'] as const;
+export const GPT_MODELS = [
+  { id: 'gpt-5.2-pro', label: 'GPT-5.2 Pro' },
+  { id: 'gpt-5.2', label: 'GPT-5.2' },
+  { id: 'gpt-5.1', label: 'GPT-5.1' },
+  { id: 'gpt-4.1', label: 'GPT-4.1' },
+  { id: 'gpt-4.1-mini', label: 'GPT-4.1 Mini' },
+] as const;
 
-export type GptModel = (typeof GPT_MODELS)[number];
+export const DEFAULT_GPT_MODEL = 'gpt-4.1' as const;
+
+export type GptModel = (typeof GPT_MODELS)[number]['id'];

@@ -1,5 +1,4 @@
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -8,10 +7,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
-import { GPT_MODELS } from 'src/config-data';
 import type { GptModel } from 'src/config-data';
-import { getSmellDisplayText } from 'src/utils/smell-display';
 
+import { RefactorAction } from './RefactorAction';
 import type { SmellRecord, SmellTableColumn } from './types';
 
 const COLUMN_LABELS: Record<SmellTableColumn, string> = {
@@ -27,7 +25,7 @@ type SmellTableViewProps = {
   records: SmellRecord[];
   columns: SmellTableColumn[];
   enableRefactor?: boolean;
-  onSuggestRefactoring?: (filePath: string, codeSnippet: string, model: GptModel) => void;
+  onSuggestRefactoring?: (record: SmellRecord, model: GptModel) => void;
 };
 
 export function SmellTableView({
@@ -91,23 +89,10 @@ export function SmellTableView({
                 if (column === 'actions' && enableRefactor && onSuggestRefactoring) {
                   return (
                     <TableCell key={column}>
-                      {GPT_MODELS.map((model) => (
-                        <Button
-                          key={model}
-                          variant="outlined"
-                          size="small"
-                          sx={{ mr: 1, mb: 0.5 }}
-                          onClick={() =>
-                            onSuggestRefactoring(
-                              record.filePath,
-                              getSmellDisplayText(record),
-                              model
-                            )
-                          }
-                        >
-                          Ask {model}
-                        </Button>
-                      ))}
+                      <RefactorAction
+                        record={record}
+                        onSuggestRefactoring={onSuggestRefactoring}
+                      />
                     </TableCell>
                   );
                 }

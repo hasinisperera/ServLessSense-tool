@@ -1,44 +1,56 @@
 import { useState } from 'react';
 
-import type { GptModel } from 'src/config-data';
 import { API_URL } from 'src/config-data';
+import type { GptModel } from 'src/config-data';
+
+import type { RefactorSuggestion, SmellRecord } from './types';
 
 export function useRefactorSuggestion(refactorType: string) {
   const [loading, setLoading] = useState(false);
-  const [suggestion, setSuggestion] = useState<string | null>(null);
+  const [suggestions, setSuggestions] = useState<RefactorSuggestion[]>([]);
   const [dialogOpen, setDialogOpen] = useState(false);
 
-  const suggestRefactoring = async (
-    filePath: string,
-    codeSnippet: string,
-    model: GptModel
-  ) => {
+  const suggestRefactoring = async (record: SmellRecord, model: GptModel) => {
     setLoading(true);
     setDialogOpen(true);
-    setSuggestion(null);
+    setSuggestions([]);
+
+    const codeSnippet = record.message ?? record.code ?? '';
 
     try {
       const response = await fetch(`${API_URL}/get-refactoring`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          filePath,
+          filePath: record.filePath,
           type: refactorType,
           codeSnippet,
+          line: record.line,
+          functionName: record.functionName,
           model,
         }),
       });
 
       const data = await response.json();
 
-      if (response.ok) {
-        setSuggestion(data.suggestion);
+      if (response.ok && Array.isArray(data.suggestions)) {
+        setSuggestions(data.suggestions);
       } else {
-        setSuggestion('Failed to get refactoring suggestions.');
+        setSuggestions([
+          {
+            title: 'Error',
+            explanation: data.error ?? 'Failed to get refactoring suggestions.',
+          },
+        ]);
       }
     } catch (error) {
       console.error('Error fetching refactoring suggestion:', error);
-      setSuggestion('An error occurred while fetching suggestions.');
+      setSuggestions([
+        {
+          title: 'Error',
+          explanation: 'An error occurred while fetching suggestions.',
+        },
+      ]);
     } finally {
       setLoading(false);
     }
@@ -46,12 +58,12 @@ export function useRefactorSuggestion(refactorType: string) {
 
   const closeDialog = () => {
     setDialogOpen(false);
-    setSuggestion(null);
+    setSuggestions([]);
   };
 
   return {
     loading,
-    suggestion,
+    suggestions,
     dialogOpen,
     suggestRefactoring,
     closeDialog,

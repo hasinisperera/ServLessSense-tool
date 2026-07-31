@@ -1,5 +1,11 @@
 export type Severity = 'low' | 'medium' | 'high';
 
+export type RefactorSuggestion = {
+  title: string;
+  explanation: string;
+  refactoredCode?: string;
+};
+
 export type SmellRecord = {
   filePath: string;
   line: number;

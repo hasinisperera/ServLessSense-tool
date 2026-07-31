@@ -132,7 +132,7 @@ export function SmellDetailLayout({
         <RefactorDialog
           open={refactor.dialogOpen}
           loading={refactor.loading}
-          suggestion={refactor.suggestion}
+          suggestions={refactor.suggestions}
           onClose={refactor.closeDialog}
         />
       )}

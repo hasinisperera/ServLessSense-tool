@@ -1,5 +1,4 @@
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
@@ -11,13 +10,12 @@ import TableRow from '@mui/material/TableRow';
 import { useTheme } from '@mui/material/styles';
 import { ChevronDown, ChevronRight, Folder, FileText } from 'lucide-react';
 
-import { GPT_MODELS } from 'src/config-data';
+import type { GptModel } from 'src/config-data';
 import { getSmellDisplayText } from 'src/utils/smell-display';
 
-import type { GptModel } from 'src/config-data';
-
+import { RefactorAction } from './RefactorAction';
 import { getSeverityColor } from './severity';
-import type { SmellRecord, SmellTableColumn, TreeNode } from './types';
+import type { SmellRecord, TreeNode } from './types';
 
 type SmellTreeViewProps = {
   nodes: TreeNode[];
@@ -25,7 +23,7 @@ type SmellTreeViewProps = {
   onToggleNode: (nodeId: string) => void;
   treeSmellFilter?: (record: SmellRecord) => boolean;
   enableRefactor?: boolean;
-  onSuggestRefactoring?: (filePath: string, codeSnippet: string, model: GptModel) => void;
+  onSuggestRefactoring?: (record: SmellRecord, model: GptModel) => void;
 };
 
 export function SmellTreeView({
@@ -128,23 +126,10 @@ export function SmellTreeView({
                           </TableCell>
                           {enableRefactor && onSuggestRefactoring && (
                             <TableCell>
-                              {GPT_MODELS.map((model) => (
-                                <Button
-                                  key={model}
-                                  variant="outlined"
-                                  size="small"
-                                  sx={{ mr: 1, mb: 0.5 }}
-                                  onClick={() =>
-                                    onSuggestRefactoring(
-                                      smell.filePath,
-                                      getSmellDisplayText(smell),
-                                      model
-                                    )
-                                  }
-                                >
-                                  Ask {model}
-                                </Button>
-                              ))}
+                              <RefactorAction
+                                record={smell}
+                                onSuggestRefactoring={onSuggestRefactoring}
+                              />
                             </TableCell>
                           )}
                         </TableRow>
